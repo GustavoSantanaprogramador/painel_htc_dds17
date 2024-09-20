@@ -4,11 +4,15 @@ import AbreviaData from './AbreviaData';
 import AbreviaInstrutor from './AbreviaInstrutor';
 import AbreviaUC from './AbreviaUC';
 import AbreviaAmbiente from './AbreviaAmbiente';
+import Loading from '../layout/Loading';
 
 function TabelaAulas() {
   const [aulas, setAulas] = useState([]);
+  const [removeLoading, setRemoveLoading] = useState(false);
   useEffect(() => {
-    carregarAulas();
+    setTimeout(() => {
+      carregarAulas();
+    }, 300);
   }, []);
 
   async function carregarAulas() {
@@ -25,6 +29,7 @@ function TabelaAulas() {
 
       const consulta = await resposta.json();
       setAulas(consulta);
+      setRemoveLoading(true);
       // console.log(consulta);
     } catch (error) {
       console.log('Erro ao buscar aulas', error);
@@ -58,6 +63,8 @@ function TabelaAulas() {
           ))}
         </tbody>
       </table>
+      {!removeLoading && <Loading />}
+      {removeLoading && aulas.length === 0 && <h1>Não há aulas disponíveis</h1>}
     </div>
   );
 }
