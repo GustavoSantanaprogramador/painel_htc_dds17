@@ -41,7 +41,7 @@ function TabelaAulas() {
         <thead>
           <tr>
             <th>Inicio</th>
-            <th>Fim</th>
+            <th className={styles.fim}>Fim</th>
             <th>Turma</th>
             <th>Intrutor</th>
             <th>Unidade Curricular</th>
@@ -52,7 +52,7 @@ function TabelaAulas() {
           {aulas.map((aula) => (
             <tr key={aula.id}>
               <td>{<AbreviaData data={aula.data_hora_inicio} />}</td>
-              <td>{<AbreviaData data={aula.data_hora_fim} />}</td>
+              <td className={styles.fim}>{<AbreviaData data={aula.data_hora_fim} />}</td>
               <td>{aula.turma}</td>
               <td>{<AbreviaInstrutor nomeCompleto={aula.instrutor} />}</td>
               <td>

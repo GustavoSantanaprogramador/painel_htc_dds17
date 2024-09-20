@@ -32,4 +32,10 @@
   .aulas{
     width: 100%;
   }
+  .tabelaAulas{
+    font-size: 15px;
+  }
+  .fim{
+    display: none;
+  }
 }
