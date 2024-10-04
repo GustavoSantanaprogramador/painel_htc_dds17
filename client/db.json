@@ -76,6 +76,17 @@
       "unidade_curricular": "GEOLOGIA ESTUDO AVANÇADO DAS PEDRAS",
       "ambiente": "VTRA-SALA-AULA",
       "chave": null
+    },
+    {
+      "id": "ead1",
+      "data": "2001-03-15T00:00:00.000Z",
+      "data_hora_inicio": "2001-03-15T19:00:00.000Z",
+      "data_hora_fim": "2001-03-15T18:00:00.000Z",
+      "turma": "de",
+      "instrutor": "de",
+      "unidade_curricular": "ded",
+      "ambiente": "de",
+      "chave": null
     }
   ],
   "imagens": [

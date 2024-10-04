@@ -6,7 +6,7 @@ import AbreviaUC from './AbreviaUC';
 import AbreviaAmbiente from './AbreviaAmbiente';
 import Loading from '../layout/Loading';
 
-function TabelaAulas() {
+function TabelaAulas({tipo}) {
   const [aulas, setAulas] = useState([]);
   const [removeLoading, setRemoveLoading] = useState(false);
   useEffect(() => {
@@ -35,8 +35,9 @@ function TabelaAulas() {
       console.log('Erro ao buscar aulas', error);
     }
   }
+  // crase é usado para criar strings com variaveis
   return (
-    <div className={styles.aulas}>
+     <div className={`styles.aulas ${tipo === 'edit'? styles.edit:''}` }>  
       <table className={styles.tabelaAulas}>
         <thead>
           <tr>
@@ -46,6 +47,7 @@ function TabelaAulas() {
             <th>Intrutor</th>
             <th>Unidade Curricular</th>
             <th>Ambiente</th>
+            {tipo === 'edit' && <th>Ações</th>}
           </tr>
         </thead>
         <tbody>
@@ -59,6 +61,12 @@ function TabelaAulas() {
                 {<AbreviaUC unidade_curricular={aula.unidade_curricular} />}
               </td>
               <td>{<AbreviaAmbiente nomeAmbiente={aula.ambiente} />}</td>
+              {tipo === 'edit' &&(
+                <td>
+                  <button className=''btn btn-warnig>Editar</button>
+                  <button className=''btn btn-warnig ms-2>Editar</button>
+                </td>
+              )}
             </tr>
           ))}
         </tbody>
