@@ -6,7 +6,7 @@ import AbreviaUC from './AbreviaUC';
 import AbreviaAmbiente from './AbreviaAmbiente';
 import Loading from '../layout/Loading';
 
-function TabelaAulas() {
+function TabelaAulas({ tipo }) {
   const [aulas, setAulas] = useState([]);
   const [removeLoading, setRemoveLoading] = useState(false);
   useEffect(() => {
@@ -36,7 +36,7 @@ function TabelaAulas() {
     }
   }
   return (
-    <div className={styles.aulas}>
+    <div className={`${styles.aulas} ${tipo === 'edit' ? styles.edit : ''}`}>
       <table className={styles.tabelaAulas}>
         <thead>
           <tr>
@@ -46,19 +46,28 @@ function TabelaAulas() {
             <th>Intrutor</th>
             <th>Unidade Curricular</th>
             <th>Ambiente</th>
+            {tipo === 'edit' && <th>Ações</th>}
           </tr>
         </thead>
         <tbody>
           {aulas.map((aula) => (
             <tr key={aula.id}>
               <td>{<AbreviaData data={aula.data_hora_inicio} />}</td>
-              <td className={styles.fim}>{<AbreviaData data={aula.data_hora_fim} />}</td>
+              <td className={styles.fim}>
+                {<AbreviaData data={aula.data_hora_fim} />}
+              </td>
               <td>{aula.turma}</td>
               <td>{<AbreviaInstrutor nomeCompleto={aula.instrutor} />}</td>
               <td>
                 {<AbreviaUC unidade_curricular={aula.unidade_curricular} />}
               </td>
               <td>{<AbreviaAmbiente nomeAmbiente={aula.ambiente} />}</td>
+              {tipo === 'edit' && (
+                <td className='bg-light'>
+                  <button className='btn btn-warning'>Editar</button>
+                  <button className='btn btn-danger ms-2'>Deletar</button>
+                </td>
+              )}
             </tr>
           ))}
         </tbody>
