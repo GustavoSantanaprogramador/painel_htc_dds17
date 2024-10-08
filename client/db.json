@@ -1,15 +1,15 @@
 {
   "aulas": [
     {
-      "id": "1300",
-      "data": "2024-08-29T03:00:00.000Z",
-      "data_hora_inicio": "2024-08-29T21:00:00.000Z",
-      "data_hora_fim": "2024-08-30T01:00:00.000Z",
+      "data": "2024-10-07T00:00:00.000Z",
+      "data_hora_inicio": "2024-10-07T18:30:00.000Z",
+      "data_hora_fim": "2024-10-07T22:00:00.000Z",
       "turma": "EMP-NBM-03",
       "instrutor": "JOEL",
       "unidade_curricular": "NOÇÕES BÁSICAS PARA MAQUINISTAS (CH: 219.0000)",
       "ambiente": "VTRIA-3-SALA-3004",
-      "chave": null
+      "chave": null,
+      "id": "1300"
     },
     {
       "id": "1280",
@@ -56,25 +56,25 @@
       "chave": null
     },
     {
-      "id": "bdbb",
-      "data": "2024-10-03",
-      "data_hora_inicio": "18:30",
-      "data_hora_fim": "22:00",
-      "turma": "HTC-DDS-17",
-      "instrutor": "RAMON DE HOLANDA",
-      "unidade_curricular": "DESENVOLVIMENTO DE SISTEMAS",
-      "ambiente": "VTRA-5-LAB-5109",
-      "chave": null
+      "data": "2024-10-07T00:00:00.000Z",
+      "data_hora_inicio": "2024-10-07T18:30:00.000Z",
+      "data_hora_fim": "2024-10-07T22:00:00.000Z",
+      "turma": "HTC-DDS-3-17",
+      "instrutor": "LAHRA de VELOSO",
+      "unidade_curricular": "Sistemas de Informação",
+      "ambiente": "VTRA-BLOCO-5-LAB-5109",
+      "chave": null,
+      "id": "a944"
     },
     {
-      "id": "a1a8",
-      "data": "2024-10-03T00:00:00.000Z",
-      "data_hora_inicio": "2024-10-03T18:30:00.000Z",
-      "data_hora_fim": "2024-10-03T22:00:00.000Z",
-      "turma": "HTC-DDS-17",
-      "instrutor": "LAHRA VELOSO",
-      "unidade_curricular": "GEOLOGIA ESTUDO AVANÇADO DAS PEDRAS",
-      "ambiente": "VTRA-SALA-AULA",
+      "id": "c3c5",
+      "data": "2024-10-07T00:00:00.000Z",
+      "data_hora_inicio": "2024-10-07T18:30:00.000Z",
+      "data_hora_fim": "2024-10-07T22:00:00.000Z",
+      "turma": "HTC-DDS-3-17",
+      "instrutor": "LUIZ FELIPE",
+      "unidade_curricular": "TÉNICAS AVANÇADAS DE VENDAS",
+      "ambiente": "VTRA-BLOCO-5-LAB-5109",
       "chave": null
     }
   ],

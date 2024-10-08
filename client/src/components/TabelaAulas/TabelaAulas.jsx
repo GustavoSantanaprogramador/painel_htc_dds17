@@ -5,6 +5,7 @@ import AbreviaInstrutor from './AbreviaInstrutor';
 import AbreviaUC from './AbreviaUC';
 import AbreviaAmbiente from './AbreviaAmbiente';
 import Loading from '../layout/Loading';
+import { Link } from 'react-router-dom';
 
 function TabelaAulas({ tipo }) {
   const [aulas, setAulas] = useState([]);
@@ -33,6 +34,27 @@ function TabelaAulas({ tipo }) {
       // console.log(consulta);
     } catch (error) {
       console.log('Erro ao buscar aulas', error);
+    }
+  }
+
+  async function deletarAula(id){
+    try {
+      const resposta = await fetch(`http://localhost:5000/aulas/${id}`,{
+        method:'DELETE',
+        headers:{
+          'Content-type':'application/json'
+        }
+      });
+      if (!resposta.ok) {
+          const error = await resposta.json();
+          throw new Error ('Erro ao Deletar Usuário', error);
+      }
+      else{
+        alert('Aula deletada');
+        setAulas(aulas.filter(aula=>aula.id !== id))
+      }
+    } catch (error) {
+      //throw new Error ('Erro ao Deletar Usuário', error);
     }
   }
   return (
@@ -64,8 +86,8 @@ function TabelaAulas({ tipo }) {
               <td>{<AbreviaAmbiente nomeAmbiente={aula.ambiente} />}</td>
               {tipo === 'edit' && (
                 <td className='bg-light'>
-                  <button className='btn btn-warning'>Editar</button>
-                  <button className='btn btn-danger ms-2'>Deletar</button>
+                  <Link to={`/editar_aula/${aula.id}`} className='btn btn-warning'>Editar</Link>
+                  <button className='btn btn-danger ms-2' onClick={()=>deletarAula(aula.id)}>Deletar</button>
                 </td>
               )}
             </tr>
