@@ -7,7 +7,7 @@ import AbreviaAmbiente from './AbreviaAmbiente';
 import Loading from '../layout/Loading';
 import { Link } from 'react-router-dom';
 
-function TabelaAulas({ tipo }) {
+function TabelaAulas({ tipo, onDeleteSuccess }) {
   const [aulas, setAulas] = useState([]);
   const [removeLoading, setRemoveLoading] = useState(false);
   useEffect(() => {
@@ -50,8 +50,9 @@ function TabelaAulas({ tipo }) {
           throw new Error ('Erro ao Deletar Usuário', error);
       }
       else{
-        alert('Aula deletada');
+        //alert('Aula deletada');
         setAulas(aulas.filter(aula=>aula.id !== id))
+        onDeleteSuccess();
       }
     } catch (error) {
       //throw new Error ('Erro ao Deletar Usuário', error);

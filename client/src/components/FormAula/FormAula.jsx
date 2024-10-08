@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-function FormAula({ titulo, txtBtn, handleSubmit, id }) {
+function FormAula({ titulo, txtBtn, handleSubmit, id, tipo }) {
   const navigate = useNavigate()  ;
   const [dataAula, setDataAula] = useState('');
   const [horaInicio, setHoraInicio] = useState('');
@@ -61,7 +61,7 @@ function FormAula({ titulo, txtBtn, handleSubmit, id }) {
       chave: null,
     };
     handleSubmit(infoAula,id);
-    navigate('/gestao_aulas');
+    navigate(`/gestao_aulas/${tipo}`);
   }
   return (
     <div className="container justify-content-center col-sm-12 col-md-6 col-lg-3">
