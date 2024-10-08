@@ -5,8 +5,9 @@ import AbreviaInstrutor from './AbreviaInstrutor';
 import AbreviaUC from './AbreviaUC';
 import AbreviaAmbiente from './AbreviaAmbiente';
 import Loading from '../layout/Loading';
+import { Link } from 'react-router-dom';
 
-function TabelaAulas({tipo}) {
+function TabelaAulas({ tipo }) {
   const [aulas, setAulas] = useState([]);
   const [removeLoading, setRemoveLoading] = useState(false);
   useEffect(() => {
@@ -34,10 +35,33 @@ function TabelaAulas({tipo}) {
     } catch (error) {
       console.log('Erro ao buscar aulas', error);
     }
+
+  } async function deletarAula(id) {
+    try {
+      const resposta = await fetch('http://localhost:5000/aulas/$(id)', {
+        method: 'DELETE',
+        headers: {
+          'Content-type': 'application/json'
+        }
+      });
+      if (!resposta.ok) {
+        const erro = await resposta.json();
+        throw new Error('Erro ao Deletar Usuário', erro);
+
+      }
+      else {
+        alert('Aulas deletada');
+        setAulas(aulas.filter(aula => aula.id !== id))
+      }
+
+    } catch (error) {
+      throw new Error('Erro ao Deletar Usuário', error);
+
+    }
   }
   // crase é usado para criar strings com variaveis
   return (
-     <div className={`styles.aulas ${tipo === 'edit'? styles.edit:''}` }>  
+    <div className={`styles.aulas ${tipo === 'edit' ? styles.edit : ''}`}>
       <table className={styles.tabelaAulas}>
         <thead>
           <tr>
@@ -61,10 +85,10 @@ function TabelaAulas({tipo}) {
                 {<AbreviaUC unidade_curricular={aula.unidade_curricular} />}
               </td>
               <td>{<AbreviaAmbiente nomeAmbiente={aula.ambiente} />}</td>
-              {tipo === 'edit' &&(
+              {tipo === 'edit' && (
                 <td>
-                  <button className=''btn btn-warnig>Editar</button>
-                  <button className=''btn btn-warnig ms-2>Editar</button>
+                  <Link to ={`{/editar_aula/${aula.id}`}className='btn btn-warnig'>Editar</Link>
+                  <Link className='btn btn-warnig ms-2' onClick={() => deletarAula(aula.id)}>Deletar</Link>
                 </td>
               )}
             </tr>

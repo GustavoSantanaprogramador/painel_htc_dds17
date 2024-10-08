@@ -22,8 +22,8 @@ function Navbar() {
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/cadastro_aula">
-              Cadastro Aulas
+            <Link className="nav-link" to="/gestao_aula">
+              Gestão Aula 
             </Link>
           </li>
         </ul>
