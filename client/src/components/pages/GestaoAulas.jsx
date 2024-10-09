@@ -4,23 +4,25 @@ import Navbar from '../layout/Navbar';
 import { Link, useParams } from 'react-router-dom';
 
 function GestaoAulas() {
-  let {tipo} = useParams();
+  const {tipo} = useParams();
+  const [tipoAlterado, setTipoAlterado] = useState(tipo);
   const [mostraMensagem, setMostramensagem] = useState(false);
   const [classeMensagem,setClasseMensagem] = useState('');
   const [textoMensagem, setTextoMensagem] = useState('');
 
   useEffect(()=>{
-    if(tipo){
+    if(tipoAlterado){
       setMostramensagem(true);
       tipoMensagem();
       setTimeout(()=>{
         setMostramensagem(false);
+        setTipoAlterado('');
       },5000);
     }
-  },[tipo])
+  },[tipoAlterado])
 
   function tipoMensagem(){
-    switch(tipo){
+    switch(tipoAlterado){
       case 'cadastrada':
         setClasseMensagem('alert alert-success');
         setTextoMensagem('Aula Cadastrada');
@@ -37,9 +39,7 @@ function GestaoAulas() {
   }
 
   function handleDelete(){
-    tipo = 'deletada';
-    console.log(tipo);
-    //tipoMensagem();
+    setTipoAlterado('deletada')
   }
 
   return (
@@ -51,7 +51,7 @@ function GestaoAulas() {
         <div className='text-end'>
           <Link className='btn btn-primary mb-3' to='/cadastro_aula'>Cadastro Aula</Link>
         </div>
-        <TabelaAulas tipo='edit' onDeleteSuccess={()=>handleDelete()} />
+        <TabelaAulas tipo='edit' onDeleteSuccess={handleDelete} />
       </div>
     </>
   );
