@@ -1,23 +1,12 @@
 import React, { useState } from 'react';
 import Navbar from '../layout/Navbar';
-import { Form, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import FormAula from '../FormAula/FormAula';
 import { useParams } from 'react-router-dom';
 
-function CadastroAulas() {
-  
-
-  //Função temporarária para cdastro de data
-  
-
-  async function cadastrarAula(infoAula) {
-    const {id} = useParams()
-    async function editAula(infoAula) {
-      
-    }
-   
-    //Criando objeto que será encaminhado para o POST da API
-   
+function EditarAula() {
+  const {id} = useParams();
+  async function editAula(infoAula,id) {
     try {
       //O POST é usado para inserir elementos na API
       const resposta = await fetch(`http://localhost:5000/aulas/${id}`,{
@@ -30,19 +19,19 @@ function CadastroAulas() {
       if(!resposta.ok){
         console.log('Erro ao editar aula');
       }else{
-        alert('Aula cadastrada');
+        //alert('Aula editada');
       }
 
     } catch (error) {
-      console.error('Erro no edição da aula',error)
+      console.error('Erro na edição da aula',error)
     }
   }
   return (
     <div>
       <Navbar />
-      <FormAula titulo ='Editar Aula'txtBtn='Salvar'id={id} handleSubmit={editAula}/>
+      <FormAula titulo='Editar Aula' txtBtn='Salvar'id={id} tipo='editada' handleSubmit={editAula}/>
     </div>
   );
 }
 
-export default CadastroAulas;
+export default EditarAula;

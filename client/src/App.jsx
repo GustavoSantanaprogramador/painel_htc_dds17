@@ -15,6 +15,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/cadastro_aula" element={<CadastroAulas />} />
         <Route path='/gestao_aula' element={<GestaoAulas/>}/>
+        <Route path='/gestao_aula/:tipo' element={<GestaoAulas/>}/> 
         <Route path='/editar_aula/:id' element={<EditarAula/>}/>
       </Routes>
     </Router>
