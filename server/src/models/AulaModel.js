@@ -76,27 +76,34 @@ export async function updateAula(aula, id) {
     aula.ambiente,
     id
   ];
-try {
-    const [retorno] = await conexao.query(sql,params);
+  try {
+    const [retorno] = await conexao.query(sql, params);
     console.log('Atualizando aula');
-    return [200, retorno];
-} catch (error) {
-  console.log(error);
-  return [500, error];
-  
-}
+    if (retorno.affectedRows < 1) {
+      return [404, { message: "Aula não encontrada" }];
+    }
+    return [200, { message: "Aula atualizada" }];
+  } catch (error) {
+    console.log(error);
+    return [500, error];
+
+  }
 
 }
 export async function deletarAula(id) {
   console.log('AulaModel: deletarAula');
   const conexao = mysql.creatPool(db);
-  const sql = 'DELETE FROM aeulas WHERE id = ?';
+  const sql = 'DELETE FROM aulas WHERE id = ?';
   const params = [id]
 
   try {
     const [retorno] = await conexao.query(sql, params)
     console.log('Deletando Aula');
-    return [200, retorno];
+    if (retorno.affectedRows < 1) {
+      return [404, { message: "Aula não encontrada" }];
+    }
+    return [200, { message: "Aula deletada" }];
+
   } catch (error) {
     return [500, error];
 
@@ -104,3 +111,24 @@ export async function deletarAula(id) {
 
   }
 }
+  export async function getOneAula(id) {
+    console.log('AulaModel: getOneAula');
+    const conexao = mysql.creatPool(db);
+    const sql = 'SELECT * FROM aulas WHERE id = ?';
+    const params = [id]
+
+    if (retorno.affectedRows < 1) {
+      return [404, { message: "Aula não encontrada" }];
+    }
+    try {
+      const [retorno] = await conexao.query(sql, params)
+      console.log('Mostrando Aula');
+      return [200, retorno[0]];
+
+    } catch (error) {
+      console.log(error)
+      return [500, error];
+
+    }
+  }
+  
